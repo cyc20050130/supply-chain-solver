@@ -11,6 +11,7 @@ import solve
 class Carrier:
     name: str
     mode: str
+    efficiency_km_per_day: float
     unit_rate_cny: float
     start_fee_cny: float
 
@@ -28,6 +29,7 @@ def parse_carriers(sections: dict[str, list[tuple[Any, ...]]], rates: dict[tuple
             Carrier(
                 name=name,
                 mode=mode,
+                efficiency_km_per_day=solve.nv(row[4] if len(row) > 4 else 0),
                 unit_rate_cny=solve.nv(row[5] if len(row) > 5 else 0) * fx,
                 start_fee_cny=solve.nv(row[6] if len(row) > 6 else 0) * fx,
             )
